@@ -1,0 +1,22 @@
+{
+  "name": "medical-appointment-system",
+  "version": "1.0.0",
+  "description": "Backend prototype for a medical appointment system",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "keywords": [
+    "medical",
+    "appointments",
+    "backend",
+    "security"
+  ],
+  "author": "Tu nombre",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "lodash": "^4.17.20"
+  }
+}
