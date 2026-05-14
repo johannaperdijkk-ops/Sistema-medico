@@ -7,33 +7,35 @@
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-
   <div class="container">
-    <h1>Medical Appointment System</h1>
+    <header>
+      <h1>Medical Appointment System</h1>
+      <p>Secure prototype for managing medical appointments</p>
+    </header>
 
-    <div class="card">
-</html>
+    <section class="card">
       <h2>Doctors</h2>
-      <button onclick="loadDoctors()">Load Doctors</button>
+      <button id="loadDoctorsBtn" type="button">Load Doctors</button>
       <ul id="doctorList"></ul>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>Appointments</h2>
-      <button onclick="loadAppointments()">Load Appointments</button>
-      <ul id="appointmentList"></ul>
-    </div>
-
-    <div class="card">
+    <section class="card">
       <h2>Create Appointment</h2>
 
-      <input type="text" id="patient" placeholder="Patient Name"/>
-      <input type="text" id="doctor" placeholder="Doctor"/>
-      <input type="date" id="date"/>
-      <button onclick="createAppointment()">Create</button>
+      <input type="text" id="patient" placeholder="Patient name" />
+      <input type="text" id="doctor" placeholder="Doctor name" />
+      <input type="date" id="date" />
+      <input type="time" id="time" />
 
+      <button id="createAppointmentBtn" type="button">Create Appointment</button>
       <p id="message"></p>
-    </div>
+    </section>
+
+    <section class="card">
+      <h2>Appointments</h2>
+      <button id="refreshAppointmentsBtn" type="button">Refresh Appointments</button>
+      <ul id="appointmentList"></ul>
+    </section>
   </div>
 
   <script src="script.js"></script>
