@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medical Appointment System</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Medical Appointment System</h1>
+
+    <div class="card">
+</html>
+      <h2>Doctors</h2>
+      <button onclick="loadDoctors()">Load Doctors</button>
+      <ul id="doctorList"></ul>
+    </div>
+
+    <div class="card">
+      <h2>Appointments</h2>
+      <button onclick="loadAppointments()">Load Appointments</button>
+      <ul id="appointmentList"></ul>
+    </div>
+
+    <div class="card">
+      <h2>Create Appointment</h2>
+
+      <input type="text" id="patient" placeholder="Patient Name"/>
+      <input type="text" id="doctor" placeholder="Doctor"/>
+      <input type="date" id="date"/>
+      <button onclick="createAppointment()">Create</button>
+
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
