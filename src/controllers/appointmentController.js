@@ -1,71 +1,66 @@
-const {
-  getAllAppointments,
-  createAppointment,
-  updateAppointment,
-  deleteAppointment
-} = require("../services/appointmentService");
+let appointments = [];
 
-function getAppointments(req, res) {
-  const appointments = getAllAppointments();
+const getAppointments = (req, res) => {
+  res.json(appointments);
+};
 
-  return res.status(200).json({
-    message: "Appointments retrieved successfully",
-    data: appointments
-  });
-}
+const createAppointment = (req, res) => {
+  const { patient, doctor, date, time } = req.body;
 
-function addAppointment(req, res) {
-  const { patientName, doctorId, date, time } = req.body;
-
-  if (!patientName || !doctorId || !date || !time) {
+  if (!patient || !doctor || !date || !time) {
     return res.status(400).json({
-      message: "Missing required fields"
+      message: "All fields are required"
     });
   }
 
-  const newAppointment = createAppointment(patientName, doctorId, date, time);
+  const newAppointment = {
+    id: Date.now(),
+    patient,
+    doctor,
+    date,
+    time
+  };
 
-  return res.status(201).json({
+  appointments.push(newAppointment);
+
+  res.status(201).json({
     message: "Appointment created successfully",
-    data: newAppointment
+    appointment: newAppointment
   });
-}
+};
 
-function editAppointment(req, res) {
+const updateAppointment = (req, res) => {
   const { id } = req.params;
-  const updatedAppointment = updateAppointment(id, req.body);
+  const { patient, doctor, date, time } = req.body;
 
-  if (!updatedAppointment) {
-    return res.status(404).json({
-      message: "Appointment not found"
-    });
+  const appointment = appointments.find((app) => app.id == id);
+
+  if (!appointment) {
+    return res.status(404).json({ message: "Appointment not found" });
   }
 
-  return res.status(200).json({
+  appointment.patient = patient || appointment.patient;
+  appointment.doctor = doctor || appointment.doctor;
+  appointment.date = date || appointment.date;
+  appointment.time = time || appointment.time;
+
+  res.json({
     message: "Appointment updated successfully",
-    data: updatedAppointment
+    appointment
   });
-}
+};
 
-function removeAppointment(req, res) {
+const deleteAppointment = (req, res) => {
   const { id } = req.params;
-  const deletedAppointment = deleteAppointment(id);
 
-  if (!deletedAppointment) {
-    return res.status(404).json({
-      message: "Appointment not found"
-    });
-  }
+  appointments = appointments.filter((app) => app.id != id);
 
-  return res.status(200).json({
-    message: "Appointment deleted successfully",
-    data: deletedAppointment
-  });
-}
+  res.json({ message: "Appointment deleted successfully" });
+};
 
 module.exports = {
   getAppointments,
-  addAppointment,
-  editAppointment,
-  removeAppointment
+  createAppointment,
+  updateAppointment,
+  deleteAppointment
 };
